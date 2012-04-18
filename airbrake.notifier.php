@@ -146,7 +146,8 @@ class AirbrakeNotifier {
         }
 
         // get the URL that caused this error
-        $protocol = strtolower(array_shift(explode('/', self::fetch($_SERVER, 'SERVER_PROTOCOL'))));
+        $protocols = explode('/', self::fetch($_SERVER, 'SERVER_PROTOCOL'));
+        $protocol = strtolower(array_shift($protocols));
         if ($protocol) {
             $host = self::fetch($_SERVER, 'SERVER_NAME');
             $path = self::fetch($_SERVER, 'REQUEST_URI');
